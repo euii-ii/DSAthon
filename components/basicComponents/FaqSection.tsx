@@ -46,14 +46,14 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="py-16 px-4 min-h-screen bg-gradient-to-b from-green-50 to-white">
+    <section className="py-16 px-4 min-h-screen bg-gradient-to-b from-green-500 to-blue-500 text-white">
       <div className="max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent transform transition-all duration-300 hover:scale-105">
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
             Frequently Asked Questions
           </h2>
-          <p className="text-lg md:text-xl text-gray-600">
+          <p className="text-lg md:text-xl text-white">
             Find answers to common questions about the DSA Bootcamp
           </p>
         </div>
@@ -65,20 +65,27 @@ export default function FAQSection() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-md transition-all duration-300 hover:shadow-lg"
+                className="bg-white rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 <button
                   onClick={() => setExpandedIndex(isOpen ? null : index)}
                   className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <h3 className="text-lg md:text-xl font-semibold text-green-700">
+                  <h3
+                    className="text-lg md:text-xl font-semibold"
+                    style={{
+                      background: "linear-gradient(to right, #55d017, #1776e6)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
                     {faq.question}
                   </h3>
                   {isOpen ? (
-                    <MinusCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+                    <MinusCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
                   ) : (
-                    <PlusCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+                    <PlusCircle className="w-6 h-6 text-blue-500 flex-shrink-0" />
                   )}
                 </button>
 
@@ -88,7 +95,16 @@ export default function FAQSection() {
                     isOpen ? "grid-rows-[1fr] opacity-100 py-4 px-6" : "grid-rows-[0fr] opacity-0"
                   }`}
                 >
-                  <p className="text-gray-600">{faq.answer}</p>
+                  <p
+                    className="text-lg font-medium"
+                    style={{
+                      background: "linear-gradient(to right, #55d017, #1776e6)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    {faq.answer}
+                  </p>
                 </div>
               </div>
             );
