@@ -8,12 +8,12 @@ const ParticleText = () => {
   >([]);
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 100 }, (_, i) => ({
+    const newParticles = Array.from({ length: 80 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 5 + 1,
-      duration: Math.random() * 2 + 1,
+      size: Math.random() * 4 + 2,
+      duration: Math.random() * 2 + 3,
       delay: Math.random() * 2,
     }));
     setParticles(newParticles);
@@ -23,30 +23,19 @@ const ParticleText = () => {
     <div className="relative group">
       {/* Animated Title */}
       <h1
-        className="text-7xl font-extrabold text-white px-4 py-2 mb-8"
-        style={{ textShadow: "0 10px 20px rgba(0,0,0,0.4)" }}
+        className="text-5xl sm:text-6xl md:text-7xl font-extrabold px-4 py-2 mb-8 text-transparent bg-clip-text"
+        style={{
+          backgroundImage: `linear-gradient(to right, #0f9d58, #4285f4)`, // Solid Green to Blue
+          textShadow: `
+            0 0 10px rgba(15, 157, 88, 0.5), 
+            0 0 20px rgba(66, 133, 244, 0.5)
+          `,
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
       >
-        A{" "}
-        <span
-          style={{
-            color: "#1776e6",
-            textShadow:
-              "0.5px 0.5px 0 black, -0.5px -0.5px 0 black, -0.5px 0.5px 0 black, 0.5px -0.5px 0 black",
-          }}
-        >
-          Skepsis
-        </span>{" "}
-        x{" "}
-        <span
-          style={{
-            color: "#55d017",
-            textShadow:
-              "0.5px 0.5px 0 black, -0.5px -0.5px 0 black, -0.5px 0.5px 0 black, 0.5px -0.5px 0 black",
-          }}
-        >
-          GFG
-        </span>{" "}
-        Event
+        Skepsis x GFG Event
       </h1>
 
       {/* Floating Particles */}
@@ -54,32 +43,33 @@ const ParticleText = () => {
         {particles.map((particle) => (
           <span
             key={particle.id}
-            className="absolute w-2 h-2 bg-white rounded-full opacity-0"
+            className="absolute rounded-full opacity-0"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               width: `${particle.size}px`,
               height: `${particle.size}px`,
-              animation: `particle-float-away ${particle.duration}s ease-out ${particle.delay}s infinite`,
+              backgroundColor: `rgba(15, 157, 88, 0.4)`, // Solid green particles
+              boxShadow: `0 0 6px rgba(66, 133, 244, 0.6)`, // Blue glow effect
+              animation: `particle-float ${particle.duration}s ease-in-out ${particle.delay}s infinite`,
             }}
           />
         ))}
       </div>
 
-      {/* Particle Animation */}
+      {/* Keyframe Animations */}
       <style jsx>{`
-        @keyframes particle-float-away {
+        @keyframes particle-float {
           0% {
             opacity: 0;
-            transform: translate(0, 0) scale(1);
+            transform: translateY(0) scale(1);
           }
-          20% {
+          50% {
             opacity: 0.8;
-            transform: translate(0, 0) scale(1);
           }
           100% {
             opacity: 0;
-            transform: translate(calc(${Math.random() * 4 - 1} * 100px), calc(${Math.random() * 4 - 1} * 100px)) scale(0);
+            transform: translateY(-40px) scale(0.95);
           }
         }
       `}</style>
