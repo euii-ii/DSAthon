@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+
 const ParticleText = dynamic(() => import("../miniCompo/ParticleTest"), { ssr: false });
 const Countdown = dynamic(() => import("./CountDown"), { ssr: false });
+
 const HeroSection = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -11,13 +13,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden text-center px-4 sm:px-8 md:px-12">
-      {/* Animated Background */}
+      {/* Full-Screen Gradient Background */}
       <div
-        className="absolute inset-0 bg-gradient-to-r animate-[gradientAnimation_6s_infinite_alternate] opacity-90"
+        className="absolute inset-0 opacity-85"
         style={{
-          backgroundSize: "200% 200%",
-          backgroundImage:
-            "linear-gradient(90deg, hsla(100, 80%, 45%, 1) 0%, hsla(212, 82%, 50%, 1) 100%)",
+          background: "linear-gradient(90deg, rgba(0, 255, 163, 0.8) 0%, rgba(0, 168, 255, 0.8) 100%)",
         }}
       ></div>
 
@@ -26,7 +26,7 @@ const HeroSection = () => {
         {/* Title with Particle Effect */}
         <ParticleText />
 
-        {/* Event Date (Uplifted) */}
+        {/* Event Date */}
         <p
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-white mt-1"
           style={{ textShadow: "0 0 10px rgba(0,0,0,0.4)" }}
@@ -34,39 +34,25 @@ const HeroSection = () => {
           February 16 - March 23, 2025
         </p>
 
-        {/* Countdown Timer (Uplifted) */}
+        {/* Countdown Timer */}
         <div className="flex justify-center items-center mt-1">
           <div className="relative z-20 backdrop-blur-lg bg-white/10 p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg shadow-lg">
             <Countdown />
           </div>
         </div>
 
-        {/* Register Button - Now Smaller & Black */}
+        {/* Register Button */}
         <div className="mt-2 z-30">
-          <a
-            href="https://lu.ma/rm1ln6ks"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://lu.ma/rm1ln6ks" target="_blank" rel="noopener noreferrer">
             <button
-              className="px-4 py-2 text-sm sm:px-5 sm:py-3 sm:text-base md:px-6 md:py-4 md:text-lg font-semibold text-white bg-black rounded-lg transition-all duration-300 hover:scale-105 hover:bg-gray-900 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 shadow-md"
+              className="px-6 py-3 text-lg font-semibold text-white rounded-lg transition-all duration-300 shadow-md 
+              bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-500 hover:to-green-400 transform hover:scale-110"
             >
               Register Now
             </button>
           </a>
         </div>
       </div>
-
-      {/* Tailwind animation keyframes */}
-      <style>
-        {`
-          @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-        `}
-      </style>
     </section>
   );
 };
