@@ -41,7 +41,7 @@ Make sure you have the following installed:
 ### Steps
 1. **Clone the repository**
    ```sh
-   git clone 
+   git clone https://github.com/euii-ii/DSAthon.git
    cd dsathon
    ```
 2. **Install dependencies**
